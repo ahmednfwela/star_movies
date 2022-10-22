@@ -14,11 +14,20 @@ class FilmDetails extends StatelessWidget {
     return Scaffold(
       body: movie == null
           ? const Text('404 - Movie not found')
-          : Column(
-              children: [
-                Image.asset(movie.image),
-                if (movie.title != null) Text(movie.title!)
-              ],
+          : SingleChildScrollView(
+              child: Column(
+                children: [
+                  Image.asset(
+                    movie.image,
+                    width: 100,
+                    height: 50,
+                  ),
+                  SizedBox(),
+                  if (movie.title != null) Text(movie.title!),
+                  SizedBox(),
+                  if (movie.desc != null) Text(movie.desc!)
+                ],
+              ),
             ),
     );
   }

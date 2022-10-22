@@ -20,7 +20,11 @@ class MoviesService {
   late final allMovies = <Movie>[
     //New movies
     Movie(id: getNewId(), image: R.images_ritornoalfuturo, isNew: true),
-    Movie(id: getNewId(), image: R.images_themask, isNew: true),
+    Movie(
+        id: getNewId(),
+        title: 'The Mask',
+        image: R.images_themask,
+        isNew: true),
     Movie(id: getNewId(), image: R.images_witcher, isNew: true),
     Movie(id: getNewId(), image: R.images_punisher, isNew: true),
     Movie(id: getNewId(), image: R.images_sense8, isNew: true),

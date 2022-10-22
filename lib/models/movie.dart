@@ -7,11 +7,12 @@ class Movie {
   bool isNew;
   bool isTrending;
   bool isOriginal;
-
+  String? desc;
   //TODO: add more data
   Movie({
     required this.id,
     required this.image,
+    this.desc,
     this.title,
     this.trendingNumberImage,
     this.progress = 0,
