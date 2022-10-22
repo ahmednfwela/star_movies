@@ -4,6 +4,7 @@ import 'package:netflix_clone_sp_v2/routes/pages.dart';
 void main() {
   runApp(const MyApp());
 }
+
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
   @override

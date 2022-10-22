@@ -1,12 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:netflix_clone_sp_v2/app_settings//colors.dart';
 import 'package:netflix_clone_sp_v2/app_settings//texts.dart';
+import 'package:netflix_clone_sp_v2/components/movie_widget.dart';
+import 'package:netflix_clone_sp_v2/components/movie_with_number.dart';
+import 'package:netflix_clone_sp_v2/services/movies_service.dart';
+import '../components/movie_with_progress.dart';
+import '../models/movie.dart';
 import '../r.dart';
+import '../routes/pages.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    final allMovies = MoviesService.instance.allMovies;
+    final listNew = allMovies.where((element) => element.isNew);
+    final listTrending = allMovies.where((element) => element.isTrending);
+    final listOriginal = allMovies.where((element) => element.isOriginal);
+    final listTrendingIndo =
+        allMovies.where((element) => element.trendingNumberImage != null);
+    final listContinue = allMovies.where((element) => element.progress > 0);
+
     Widget poster() {
       return SizedBox(
         width: MediaQuery.of(context).size.width,
@@ -196,165 +210,6 @@ class HomePage extends StatelessWidget {
       );
     }
 
-    var listNew = [
-      R.images_ritornoalfuturo,
-      R.images_themask,
-      R.images_witcher,
-      R.images_punisher,
-      R.images_sense8,
-      R.images_daredevil,
-      R.images_dark,
-      R.images_stranger_things,
-      R.images_umbrella_academy,
-      R.images_peakyblinders2,
-    ];
-    var listTrending = [
-      R.images_you,
-      R.images_thegreathack,
-      R.images_heman,
-      R.images_nonhomai,
-      R.images_formula1,
-      R.images_theboldtype,
-      R.images_testimonemisterioso,
-      R.images_guardianofjustice,
-      R.images_mezzanotteinstambul,
-      R.images_topboy,
-    ];
-
-    var listOriginal = [
-      R.images_casadicarta,
-      R.images_squidgame,
-      R.images_umbrella_academy_2,
-      R.images_dontlookup,
-      R.images_cattelan,
-      R.images_stranger_things,
-      R.images_thirteen_reasons_why,
-      R.images_crown,
-      R.images_atypical,
-      R.images_lupin,
-    ];
-    var listTrendingIndo = [
-      Trending(imageNumber: R.images_one, imageMovie: R.images_vikings),
-      Trending(imageNumber: R.images_two, imageMovie: R.images_venom),
-      Trending(imageNumber: R.images_three, imageMovie: R.images_lucifer),
-      Trending(imageNumber: R.images_four, imageMovie: R.images_toyboy),
-      Trending(imageNumber: R.images_five, imageMovie: R.images_theadamproject),
-      Trending(imageNumber: R.images_six, imageMovie: R.images_thepirates),
-      Trending(imageNumber: R.images_seven, imageMovie: R.images_riverdale),
-      Trending(imageNumber: R.images_eight, imageMovie: R.images_inventinganna),
-      Trending(imageNumber: R.images_nine, imageMovie: R.images_againsttheice),
-      Trending(imageNumber: R.images_ten, imageMovie: R.images_manifest),
-    ];
-
-    var listContinue = [
-      Continue(image: R.images_mrrobot, progress: 0.8),
-      Continue(image: R.images_rednotice, progress: 0.2),
-      Continue(image: R.images_brooklyne, progress: 0.5),
-    ];
-
-    Widget itemMovie(
-      String image,
-      double? width, //? per permettere di utilizzare il valore null
-      double? height,
-      bool? margin,
-    ) {
-      return Container(
-        margin: const EdgeInsets.only(right: 10),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(6),
-          child: Image.asset(
-            image,
-            width: 100,
-            height: 155,
-            fit: BoxFit.cover,
-          ),
-        ),
-      );
-    }
-
-    Widget itemMovieNumber(String number, String image) {
-      return SizedBox(
-        height: 165,
-        child: Stack(
-          children: [
-            Container(
-              margin: const EdgeInsets.only(left: 25),
-              child: itemMovie(image, 115, 165, null),
-            ),
-            Container(
-              alignment: Alignment.bottomLeft,
-              child: Image.asset(
-                number,
-                height: 82,
-              ),
-            ),
-          ],
-        ),
-      );
-    }
-
-    Widget itemMovieContinue(String image, double progress) {
-      return Container(
-        width: 115,
-        height: 205,
-        margin: const EdgeInsets.only(right: 5),
-        decoration: const BoxDecoration(
-            borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(6),
-          topRight: Radius.circular(6),
-        )),
-        child: Column(
-          children: [
-            SizedBox(
-              width: 115,
-              height: 165,
-              child: Stack(
-                children: [
-                  itemMovie(
-                    image,
-                    115,
-                    165,
-                    false,
-                  ),
-                  Center(
-                    child: Image.asset(
-                      R.images_ic_play,
-                      width: 60,
-                      height: 60,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            LinearProgressIndicator(
-              minHeight: 5,
-              color: redColor,
-              value: progress,
-              backgroundColor: blackColor2,
-            ),
-            Container(
-              margin: const EdgeInsets.symmetric(horizontal: 6),
-              height: 35,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Icon(
-                    Icons.info_outline,
-                    size: 25,
-                    color: whiteColor,
-                  ),
-                  Image.asset(
-                    R.images_ic_dot,
-                    height: 25,
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      );
-    }
-
     Widget itemBottomNavigation(
       String icon,
       String name,
@@ -407,8 +262,13 @@ class HomePage extends StatelessWidget {
             child: SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
-                children:
-                    listNew.map((e) => itemMovie(e, null, null, true)).toList(),
+                children: listNew
+                    .map(
+                      (e) => MovieWidget(
+                        image: e.image,
+                      ).wrapWithMovie(e),
+                    )
+                    .toList(),
               ),
             ),
           ),
@@ -419,7 +279,11 @@ class HomePage extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: listTrending
-                    .map((e) => itemMovie(e, null, null, true))
+                    .map(
+                      (e) => MovieWidget(
+                        image: e.image,
+                      ).wrapWithMovie(e),
+                    )
                     .toList(),
               ),
             ),
@@ -431,7 +295,11 @@ class HomePage extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: listOriginal
-                    .map((e) => itemMovie(e, 150, 307, true))
+                    .map(
+                      (e) => MovieWidget(
+                        image: e.image,
+                      ).wrapWithMovie(e),
+                    )
                     .toList(),
               ),
             ),
@@ -441,7 +309,12 @@ class HomePage extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             child: Row(
               children: listTrendingIndo
-                  .map((e) => itemMovieNumber(e.imageNumber, e.imageMovie))
+                  .map(
+                    (e) => MovieWithNumber(
+                      numberImage: e.trendingNumberImage!,
+                      movieImage: e.image,
+                    ).wrapWithMovie(e),
+                  )
                   .toList(),
             ),
           ),
@@ -449,17 +322,29 @@ class HomePage extends StatelessWidget {
           Container(
             margin: const EdgeInsets.only(top: 5),
             child: Row(
-                children: listContinue
-                    .map(
-                      (e) => itemMovieContinue(
-                        e.image,
-                        e.progress,
-                      ),
-                    )
-                    .toList()),
+              children: listContinue
+                  .map(
+                    (e) => MovieWithProgress(
+                      image: e.image,
+                      progress: e.progress,
+                    ).wrapWithMovie(e),
+                  )
+                  .toList(),
+            ),
           ),
         ],
       ),
+    );
+  }
+}
+
+extension MovieWidgetExt on Widget {
+  Widget wrapWithMovie(Movie e) {
+    return InkWell(
+      onTap: () {
+        MyPages.routes.go('/movie/${e.id}', extra: e);
+      },
+      child: this,
     );
   }
 }

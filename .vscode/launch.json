@@ -5,10 +5,15 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "star_movies",
+            "name": "star_movies Chrome",
             "request": "launch",
             "type": "dart",
             "deviceId": "Chrome"
+        },
+        {
+            "name": "star_movies",
+            "request": "launch",
+            "type": "dart"
         },
         {
             "name": "star_movies (profile mode)",
