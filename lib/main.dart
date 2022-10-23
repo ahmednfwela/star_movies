@@ -10,13 +10,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
+      routerConfig: MyPages.routes,
       title: 'Star Movies',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         fontFamily: 'HelveticaNeue',
       ),
-      routerDelegate: MyPages.routes.routerDelegate,
-      routeInformationParser: MyPages.routes.routeInformationParser,
     );
   }
 }

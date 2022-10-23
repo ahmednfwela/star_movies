@@ -19,32 +19,97 @@ class MoviesService {
   //TODO: add data
   late final allMovies = <Movie>[
     //New movies
-    Movie(id: getNewId(), image: R.images_ritornoalfuturo, isNew: true),
+    Movie(
+        id: getNewId(),
+        image: R.images_ritornoalfuturo,
+        isNew: true,
+        title: 'Ritornoal Futuro'),
     Movie(
         id: getNewId(),
         title: 'The Mask',
         image: R.images_themask,
+        desc: '''
+When timid bank clerk Stanley Ipkiss discovers a magical mask containing the spirit of the Norse god Loki, his entire life changes. While wearing the mask, Ipkiss becomes a supernatural playboy exuding charm and confidence which allows him to catch the eye of local nightclub singer Tina Carlyle. Unfortunately, under the mask's influence, Ipkiss also robs a bank, which angers junior crime lord Dorian Tyrell, whose goons get blamed for the heist.''',
+        trailer: 'https://www.youtube.com/watch?v=LZl69yk5lEY',
         isNew: true),
-    Movie(id: getNewId(), image: R.images_witcher, isNew: true),
-    Movie(id: getNewId(), image: R.images_punisher, isNew: true),
-    Movie(id: getNewId(), image: R.images_sense8, isNew: true),
-    Movie(id: getNewId(), image: R.images_daredevil, isNew: true),
-    Movie(id: getNewId(), image: R.images_dark, isNew: true),
-    Movie(id: getNewId(), image: R.images_stranger_things, isNew: true),
-    Movie(id: getNewId(), image: R.images_umbrella_academy, isNew: true),
-    Movie(id: getNewId(), image: R.images_peakyblinders2, isNew: true),
+    Movie(
+        id: getNewId(),
+        image: R.images_witcher,
+        isNew: true,
+        desc:
+            'Geralt of Rivia, a mutated monster-hunter for hire, journeys toward his destiny in a turbulent world where people often prove more wicked than beasts.',
+        title: 'The Witcher',
+        trailer: 'https://www.youtube.com/watch?v=ndl1W4ltcmg'),
+    Movie(
+        id: getNewId(),
+        image: R.images_punisher,
+        isNew: true,
+        title: 'Punisher'),
+    Movie(
+        id: getNewId(), image: R.images_sense8, isNew: true, title: 'Sense 8'),
+    Movie(
+        id: getNewId(),
+        image: R.images_daredevil,
+        isNew: true,
+        title: 'Daredevil'),
+    Movie(id: getNewId(), image: R.images_dark, isNew: true, title: 'Dark'),
+    Movie(
+        id: getNewId(),
+        image: R.images_stranger_things,
+        isNew: true,
+        title: 'Stranger things'),
+    Movie(
+        id: getNewId(),
+        image: R.images_umbrella_academy,
+        isNew: true,
+        title: 'Umbrella Academy'),
+    Movie(
+        id: getNewId(),
+        image: R.images_peakyblinders2,
+        isNew: true,
+        title: 'Peaky Blinders 2'),
     //Trending movies
-    Movie(id: getNewId(), image: R.images_you, isTrending: true),
-    Movie(id: getNewId(), image: R.images_thegreathack, isTrending: true),
-    Movie(id: getNewId(), image: R.images_heman, isTrending: true),
-    Movie(id: getNewId(), image: R.images_nonhomai, isTrending: true),
-    Movie(id: getNewId(), image: R.images_formula1, isTrending: true),
-    Movie(id: getNewId(), image: R.images_theboldtype, isTrending: true),
+    Movie(id: getNewId(), image: R.images_you, isTrending: true, title: 'You'),
     Movie(
-        id: getNewId(), image: R.images_testimonemisterioso, isTrending: true),
-    Movie(id: getNewId(), image: R.images_guardianofjustice, isTrending: true),
+        id: getNewId(),
+        image: R.images_thegreathack,
+        isTrending: true,
+        title: 'The Great Hack'),
     Movie(
-        id: getNewId(), image: R.images_mezzanotteinstambul, isTrending: true),
+        id: getNewId(),
+        image: R.images_heman,
+        isTrending: true,
+        title: 'Heman'),
+    Movie(
+        id: getNewId(),
+        image: R.images_nonhomai,
+        isTrending: true,
+        title: 'Non homai'),
+    Movie(
+        id: getNewId(),
+        image: R.images_formula1,
+        isTrending: true,
+        title: 'Formula 1'),
+    Movie(
+        id: getNewId(),
+        image: R.images_theboldtype,
+        isTrending: true,
+        title: 'The Bold Type'),
+    Movie(
+        id: getNewId(),
+        image: R.images_testimonemisterioso,
+        isTrending: true,
+        title: 'Testimone Misterioso'),
+    Movie(
+        id: getNewId(),
+        image: R.images_guardianofjustice,
+        isTrending: true,
+        title: 'Guardian Of Justice'),
+    Movie(
+        id: getNewId(),
+        image: R.images_mezzanotteinstambul,
+        isTrending: true,
+        title: 'Mezzanotte instambul'),
     Movie(id: getNewId(), image: R.images_topboy, isTrending: true),
     //Original
     Movie(id: getNewId(), image: R.images_casadicarta, isOriginal: true),

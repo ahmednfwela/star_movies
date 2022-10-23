@@ -342,7 +342,7 @@ extension MovieWidgetExt on Widget {
   Widget wrapWithMovie(Movie e) {
     return InkWell(
       onTap: () {
-        MyPages.routes.go('/movie/${e.id}', extra: e);
+        MyPages.routes.push('/movie/${e.id}');
       },
       child: this,
     );
